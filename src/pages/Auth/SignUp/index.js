@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../../../config";
-import { useHistory } from "react-router";
+import { history } from "../../../App";
 
 export const SignUp = () => {
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordShown2, setPasswordShown2] = useState(false);

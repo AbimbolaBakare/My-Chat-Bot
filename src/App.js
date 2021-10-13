@@ -4,6 +4,9 @@ import { SignIn } from "./pages/Auth/SignIn";
 import { SignUp } from "./pages/Auth/SignUp";
 import { Dashboard } from "./pages/Dashboard";
 import Agent from "./Agent";
+import { createBrowserHistory } from "history";
+
+export const history = createBrowserHistory({ forceRefresh: true });
 
 function App() {
   return (

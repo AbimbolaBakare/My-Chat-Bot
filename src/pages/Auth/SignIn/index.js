@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../../../config";
-import { useHistory } from "react-router";
+import { history } from "../../../App";
 
 export const SignIn = () => {
-  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     email: "",

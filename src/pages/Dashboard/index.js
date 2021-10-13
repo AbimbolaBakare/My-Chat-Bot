@@ -2,12 +2,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { history } from "../../App";
 import Client from "../../Client";
 import { baseUrl } from "../../config";
 
 export const Dashboard = () => {
-  const history = useHistory();
   const authToken = sessionStorage.getItem("token");
   const redirect = () => history.push("/");
   const [user, setUser] = useState({});
@@ -26,6 +25,7 @@ export const Dashboard = () => {
       )
       .then((res) => {
         setUser(res.data);
+        sessionStorage.setItem("userType", res.data.role);
       });
   };
 
@@ -239,7 +239,13 @@ export const Dashboard = () => {
           ) : null}
         </main>
       </div>
-      {user?.role !== "Admin" ? <Client /> : null}
+      {user?.role === "user" ||
+      user?.role === "User" ||
+      user?.role === "techy" ||
+      user.role === "Agent" ||
+      user.role === "fred" ? (
+        <Client />
+      ) : null}
     </div>
   );
 };

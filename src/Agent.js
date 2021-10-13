@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MDSpinner from "react-md-spinner";
+import { history } from "./App";
 const agentUID = process.env.REACT_APP_AGENT_ID;
 const appID = process.env.REACT_APP_ID;
 const region = process.env.REACT_APP_REGION;
@@ -8,6 +9,16 @@ const wid = process.env.REACT_APP_W2;
 
 const Agent = () => {
   const [loading, setLoading] = useState(true);
+  const userType = sessionStorage.getItem("userType");
+  const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    if (token && userType && userType !== "Admin") {
+      history.push("/");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     window.CometChatWidget.init({
       appID: appID,
